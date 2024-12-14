@@ -1,0 +1,52 @@
+server:
+  port: 8088
+
+spring:
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/icycle
+    username: postgres
+    password: Jw8S0F4gbxi0zqm7
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: icycle
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://149.102.140.178:8080/realms/icycle
+          jwk-set-uri: http://149.102.140.178:8080/realms/icycle/protocol/openid-connect/certs
+
+
+jwt:
+  auth:
+    converter:
+      resourceId: web_client
+      principalAttribute: principal_username
+
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          DEBUG
+
+
+keycloak:
+  auth-server-url: http://149.102.140.178:8080
+  realm: icycle
+  resource: web_client
+
+
+springdoc:
+  api-docs:
+    enabled: ${env.API_DOCS_ENABLED:on}
+  swagger-ui:
+    tags-sorter: 'alpha'
+    operations-sorter: 'alpha'
