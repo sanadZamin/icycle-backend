@@ -35,7 +35,7 @@ public class AppUserServiceImp implements AppUserService {
         UUID uuid = keyCloakService.addKeycloakUser(appUser, Roles.app_user);
         appUser.setId(uuid);
         log.info("Creating User: {} in database", appUser.getFirstName());
-
+        appUser.setCreated_at(System.currentTimeMillis());
         return appUserMappers.appUserToDto(appUserRepository.save(appUser));
     }
 
@@ -62,6 +62,5 @@ public class AppUserServiceImp implements AppUserService {
         keyCloakService.removeKeycloakUser(UserId.toString());
         log.info("Removing User {} from icycle database", UserId);
         appUserRepository.deleteById(UserId);
-        
     }
 }

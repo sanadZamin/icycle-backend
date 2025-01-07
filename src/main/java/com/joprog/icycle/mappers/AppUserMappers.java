@@ -15,7 +15,8 @@ public class AppUserMappers {
                 appUser.getFirstName(),
                 appUser.getLastName(),
                 appUser.getEmail(),
-                appUser.getRole()
+                appUser.getRole(),
+                appUser.getCreated_at()
         );
     }
 }

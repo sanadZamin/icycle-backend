@@ -1,12 +1,12 @@
 package com.joprog.icycle.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -30,5 +30,11 @@ public class AppUser {
     private String mobileNumber;
     @Column
     private Roles role;
+    @ManyToMany
+    private List<Teams> team;
+    @Column(nullable = false, updatable = false)
+    private Long created_at;
+
+
 
 }
